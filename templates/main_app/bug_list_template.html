@@ -1,0 +1,84 @@
+{% extends 'main_app/bug_list.html' %}
+
+{%load crispy_forms_tags %} 
+{% block bugsearch_block %}
+
+  <form method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
+  <button type="submit" class="btn btn-primary"> <a> <i class="bi bi-search"></i> Search</a></button>
+  </form>
+  
+{% endblock %}
+
+{% block buglist_block %}
+
+{% if bug_searched == '' %}
+
+{% for bugs in list_of_bugs %}
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            <div>
+              <p class="fw-bold mb-1">John Doe</p>
+              <p class="text-muted mb-0">john.doe@gmail.com</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ bugs.bug_title }} </p>
+        </td>
+        <td>{{ bugs.contact }}</td>
+        <td>{{ bugs.bug_priority }}</td>
+        <td>
+            {% if bugs.bug_status == 'Open' %}
+            <div class="p-3 mb-2 bg-primary bg-gradient text-white rounded" style="text-align: center;">{{ bugs.bug_status }}</div>
+            {% else %}
+            <div class="p-3 mb-2 bg-danger bg-gradient text-white rounded" style="text-align: center;">{{ bugs.bug_status }}</div>
+            {% endif %}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary"> <a href="{% url 'bugdetails' bugs.id %}" style="color: white;"> View </a> </button>
+          <button type="button" class="btn btn-warning"> <a href="{% url 'upadtebug' bugs.id %}" style="color: black;"> Edit </a>  </button>
+          <button type="button" class="btn btn-danger"> <a href="{% url 'deletebug' bugs.id %}" style="color: white;"> Delete </a> </button>
+        </td>
+      </tr>
+      
+{% endfor %}
+
+{% else %}
+
+{% for bugs in searched_bugs_list %}
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            <div>
+              <p class="fw-bold mb-1">John Doe</p>
+              <p class="text-muted mb-0">john.doe@gmail.com</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ bugs.bug_title }} </p>
+        </td>
+        <td>{{ bugs.contact }}</td>
+        <td>{{ bugs.bug_priority }}</td>
+        <td>
+            {% if bugs.bug_status == 'Open' %}
+            <div class="p-3 mb-2 bg-primary bg-gradient text-white rounded" style="text-align: center;">{{ bugs.bug_status }}</div>
+            {% else %}
+            <div class="p-3 mb-2 bg-danger bg-gradient text-white rounded" style="text-align: center;">{{ bugs.bug_status }}</div>
+            {% endif %}
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary"> <a href="{% url 'bugdetails' bugs.id %}" style="color: white;"> View </a> </button>
+          <button type="button" class="btn btn-warning"> <a href="{% url 'upadtebug' bugs.id %}" style="color: black;"> Edit </a> </button>
+          <button type="button" class="btn btn-danger"> <a href="{% url 'deletebug' bugs.id %}" style="color: white;"> Delete </a> </button>
+        </td>
+      </tr>
+      
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

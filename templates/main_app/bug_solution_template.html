@@ -1,0 +1,17 @@
+{% extends 'main_app/bug_viewer.html' %}
+
+{% block bug_solution_block %}
+
+{%load crispy_forms_tags %} 
+
+{% if submitted %}
+
+{% else %}
+    <form action="" method=POST>
+        {% csrf_token %}
+        {{ form | crispy }}
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </form>
+{% endif %} 
+
+{% endblock %}

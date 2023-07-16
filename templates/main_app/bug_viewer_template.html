@@ -1,0 +1,129 @@
+{% extends 'main_app/bug_viewer.html' %}
+{% block buglist_viewer_block %}
+
+  <div class="m-4 pt-3">
+    <table class="table align-middle mb-0 bg-white">
+      <tbody>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Bug Title:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-bold mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ individual_bug.bug_title }} </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Project Name:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ individual_bug.project_name }} </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Raised By:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> John Doe </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">User Email:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> john.doe@gmail.com </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Contact No.:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ individual_bug.contact }} </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Raised on:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ individual_bug.bug_date }} </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Priority:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ individual_bug.bug_priority }} </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Bug Status:</p>
+            </div>
+          </td>
+          <td>
+            {% if individual_bug.bug_status == 'Open' %}
+            <div class="p-3 mb-2 bg-primary bg-gradient text-white rounded" style="text-align: center;">{{ individual_bug.bug_status }}</div>
+            {% else %}
+            <div class="p-3 mb-2 bg-danger bg-gradient text-white rounded" style="text-align: center;">{{ individual_bug.bug_status }}</div>
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Query department:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1" style="word-wrap: break-word; min-width: 235px; max-width: 235px;"> {{ individual_bug.query_department }} </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <p class="fw-bold mb-1">Bug Description:</p>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1"> {{ individual_bug.bug_description }} </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="m-4 pt-3">
+    <div class="card">
+      <div class="card-body">
+        <!-- Title -->
+        <h4 class="card-title"><a>Here is the tester code of this bug:</a></h4>
+        <!-- Text -->
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text"> <code>{{ individual_bug.tester_code }} </code> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
