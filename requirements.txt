@@ -1,0 +1,10 @@
+asgiref
+crispy-bootstrap5
+Django
+django-crispy-forms
+pip
+setuptools
+six
+sqlparse
+typing_extensions
+wheel
